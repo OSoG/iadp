@@ -1,0 +1,28 @@
+7. 모형평가
+.예제27 ;신 ##infert data를 신경망 모형과 의사결정 모형을 통해 모형 평가를 한다.
+set.seed(1234)
+str(infert)
+infert<-infert[sample(nrow(infert)),]
+infert<-infert[,c("age", "parity", "induced", "spontaneous", "case"),]
+traindata<-infert[1:(nrow(infert)*0.7),]
+install.packages("neuralent")
+library(neuralnet)
+net.infert<-neuralnet(case~age+parity+induced+spontaneous, data=train data, hidden=3, err.fct="ce", linear.output=F, likelihood=T)
+n_test<-subset(testdata, select= -case)
+head(n_test)
+nn_pred<-compute(net.infert, n_test) #model estimate value
+testdata$net_pred<-nn_pred$net.result
+head(testdata)
+
+#decision tree
+install.packages("C50")
+library(C50)
+traindata$case<-factor(traindata$case) #decision tree only use categorical variable for target)
+dt.infert<-C5.0(case~age+parity+induced+spontaneous, data=traindata)
+testdata$dt_pred<-predict(dt.infert,testdata,type="prob")[,2]
+#predict value extract
+head(testdata)
+install.packages("Epi")
+library(Epi)
+neural_ROC<-ROC(from=case~net_pred, data=testdata, plot="ROC")
+dtree_ROC<-ROC(form=case~dt_pred, data=testdata, plot="ROC")

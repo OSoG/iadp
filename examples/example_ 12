@@ -1,0 +1,6 @@
+예제 12>
+acf (Nile. diff2,lag.max=20)
+acf (Nile. diff2,lag.max=20,plot=FALSE)
+
+pacf(Nile.diff2,lag.max=20)
+pacf(Nile.diff2,lag.max=20,plot=FALSE)

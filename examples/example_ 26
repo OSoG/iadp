@@ -1,0 +1,6 @@
+#iris나이브 베이즈 분류 예제 26
+library(e1071)
+data(iris)
+m<-naiveBayes(Species~.,data=iris)
+m
+table(predict(m,iris[,-5]),iris[,5],dnn=list('predicted','actual'))

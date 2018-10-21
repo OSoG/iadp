@@ -1,0 +1,6 @@
+#로지스틱 회의 예제 18
+Analysis of Deviance table
+Model: bionomial, link:logit2
+Response: vs
+Terms added sequentially (first to last)
+Df Deviance Resid. Df Resid. Dev Pr(>Chi)

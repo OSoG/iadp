@@ -1,0 +1,8 @@
+예제 8>
+loc<-cmdscale(eurodist) 
+loc
+x<-loc[,1] 
+y<-loc[,2]
+plot(x,y,type="n",main="eurodist") 
+text(x,y,rownames(loc),cex=.8,col="red") 
+abline(v=0,h=0)

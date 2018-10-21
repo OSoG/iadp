@@ -1,0 +1,6 @@
+.예제 11 ;
+
+ldeaths.decompose<-decompose(ldeaths)
+ldeaths.decompose$seasonal
+ldeaths.decompose.adj<-ldeaths-ldeaths.decompose$seasonal
+plot(ldeaths.decompose.adj)

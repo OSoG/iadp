@@ -1,0 +1,13 @@
+예제 28>
+library(ROCR)
+n_r<-prediction (testdata$net_pred,testdata$case)
+d_r<-prediction (testdata$dt_pred,testdata$case)
+n_p<-perfomance(n_r,“tpr“,”fpr“)
+d_p<-perfomance(d_r,“tpr“,“fpr“)
+plot (n_p,col=’red’)
+par(new=TRUE)
+plot(d_p,col=“blue”)
+abline(a=0,b=1)
+n_lift<-performance(n_r,“llift”,“rpp”)
+plot(n_lift,col=“red“)
+abline(v=0.2)

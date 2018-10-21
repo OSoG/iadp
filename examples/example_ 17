@@ -1,0 +1,4 @@
+#예제 17
+glm.vs<-(vs~mpg+am, data=mtcars, family "binomial")
+summary(glm.vs)
+

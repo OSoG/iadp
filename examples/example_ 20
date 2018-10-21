@@ -1,0 +1,23 @@
+예제 20>
+data<-iris
+Scale<-data.frame(lapply(data[,1:4],function(x) scale(x)))
+Scale$Species<-data$Species
+index<-sample(1: nrow(Scale), round (0.75*nrow(Scale) ),replac=FALSE)
+
+train<-Scale[index,]
+test<-Scale [-index,]
+model<-nnet( Species~., size=2,decay=5e-04,data=train)
+
+summary(model)
+predict.model<-predict (model,test[,l:4],type=“class”)
+predict.model
+
+actual <-test$Species
+confusion.matrix <- table(actual, predict.model)
+confusion.matrix
+predict.model
+
+Table<-table(test$Species, predict.model)
+accuracy<-sum(diag(Table))/sum(Table)
+accuracy
+sum(predict.model==actual)/NROW(predict.model)

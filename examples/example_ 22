@@ -1,0 +1,15 @@
+#앙상블모형 예제 22
+data(iris)
+set.seed(1)
+train<-c(sample(1:50:25),sample(51:100,25),sample(101:150,25))
+iris.bagging<-bagging(Species~., data=iris[train,],mfinal=10,control=rpart.control(maxdepth=1))
+iris.bagging
+$trees
+$trees[[1]]
+n=75
+iris.bagging$importance
+barplot(iris.bagging$importance[order(iris.bagging$importance,decreasing=TRUE)],ylim=c(0,100),main="Variables Relative Importance",col="red")
+table(iris.bagging$class,iris$Species[train],dnn=c("Predicted Class","Observed Class"))
+1-sum(iris.bagging$class==iris$Species[train])/length(iris$Species[train])
+iris.predbagging<-predict.bagging(iris.bagging,newdata=iris[train,])
+iris.predbagging

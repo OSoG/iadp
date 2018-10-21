@@ -1,0 +1,16 @@
+install.packages("e1070")
+library(e1071)
+s<-sample(150,100)
+col<-("petal.length".,"petal.width","species")
+iris_train<-iris[s,col]
+iris_test<-iris[-s,col]
+#linear kernel 방식으로 modeling
+iris_svm<-svm(species~., data=iris_train,cost=1,kernel="linear")
+# cost: 커널 파라미터 cost, kernel : 커널 함수
+
+plot(iris_svm, iris_train[,col])
+
+#svm train vs test 결과 예측
+p<-predict(iris_svm, iris_test[,col], type="class")
+plot(p)
+table(p, iris_test[,3])

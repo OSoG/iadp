@@ -1,0 +1,5 @@
+.예제15 ;신
+logit<-glm(pmale~x, family = "binomial", weights = total)
+summary(logit)
+exp(-61.3183) * exp(2.2111*27)
+exp(-61.3183) * exp(2.2111*28)

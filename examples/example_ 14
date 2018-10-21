@@ -1,0 +1,7 @@
+#로지스틱 회귀 예제 14
+logit<-log(pmale/(1-pmale))
+z1<-lm(logit~x)
+summary(z1)
+logit2<-coefficients(z1)[1]+coefficients(z1)[2]*x
+rmalehat<-exp(logit2)/(1+exp(logit2))
+rmalehat

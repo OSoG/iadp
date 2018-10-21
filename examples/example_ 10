@@ -1,0 +1,9 @@
+#시계열 모형 예제 10
+Start=1871
+End=1970
+Frequency=1
+plot(Nile)
+Nile.diff1<-diff(Nile,differences=1)
+plot(Nile,diff1)
+Nile.diff2<-diff(Nile,differences=2)
+plot(Nile,diff2)

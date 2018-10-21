@@ -1,0 +1,15 @@
+예제 24>
+library(rpart)
+data(stagec)
+stagec3<-stagec[complete.cases(stagec),]
+
+set.seed(1234)
+ind<-sample(2,nrow(stagec3),replace=TRUE,prob=c(0.7,0.3))
+
+train<-stagec3[ind==l,] 
+test<-stagec3[ind==2,]
+rf<- randomForest (ploidy〜.,data=train,ntree=100,proximity=T,importances=T)
+table( predict (rf),train$ploidy)
+print(rf)
+
+varImpPlot(rf)

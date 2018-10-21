@@ -1,0 +1,12 @@
+library(rpart)
+k<-rpart(Species~., data=iris)
+
+
+library(rpart.plot)
+prp(k,type=4,extra=2,digits=3)
+
+
+head(predict(k,newdata=iris, type="class"))
+
+printcp(k)
+

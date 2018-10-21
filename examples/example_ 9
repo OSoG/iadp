@@ -1,0 +1,10 @@
+#예제9
+
+library(datasets)
+data("USArrests")
+head(USArrests)
+fit<-princomp(USArrests,cor=TRUE)
+summary(fit)
+loadings(fit)
+plot(fit,type="lines")
+biplot(pr)
