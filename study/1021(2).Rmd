@@ -1,0 +1,78 @@
+---
+title: "1021(2)"
+author: "ds"
+date: "10/21/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#p.381
+x<-c(1,2,3,4,5,6,7,8,9)
+y<-c(5,3,2,3,4,6,10,12,18)
+df1<-data.frame(x,y)
+head(df1)
+plot(df1)
+
+x2<-x^2
+x2
+df2<-cbind(x2,df1)
+head(df2)
+plot(x2,y)
+
+lm1<-lm(y~x, data=df1)
+plot(df1)
+abline(lm1)
+summary(lm1)
+
+plot(lm(y~x), data=df1)
+
+lm2<-lm(y~x+x2,data=df2)
+summary(lm2)
+plot(lm2)
+
+#예제5 모델 진단 그래프
+data(cars)
+head(cars)
+m<-lm(dist~speed, cars)
+summary(m)
+attach(cars)
+plot(speed,dist)
+abline(m)
+
+#residuals vs fitted
+
+#normal q-q
+#scale-location
+
+#예제6
+x1<-c(7,1,11,11,7,11,3,1,2,21,1,11,10)
+x2<-c(26,29,56,31,52,55,71,31,54,47,40,66,68)
+x3<-c(6,15,8,8,6,9,17,22,18,4,23,9,8)
+x4<-c(60,52,20,47,33,22,6,44,22,26,34,12,12)
+y<-c(78.5,74.3,104.3,87.6,95.9,109.2,102.7,72.5,93.1,115.9,83.8,113.3,109.4)
+df<-data.frame(x1,x2,x3,x4,y)
+head(df)
+
+#회귀분석(후진제거법,수동)
+a<-lm(y~x1+x2+x3+x4, data=df)
+a
+summary(a)
+
+a2<-lm(y~x1+x2+x4, data=df)
+summary(a2)
+
+a3<-lm(y~x1+x2, data=df)
+summary(a3)
+
+
+#예제7 (자동, 전진선택법)
+step(lm(y~1,df), scope=list(lower=~1, upper=~x1+x2+x3+x4), direction="forward")
+#step
+#scope
+#direction
+
+library(knitr)
+knit('/Users/dongweonshin/iadp/study/1021(2).Rmd')
